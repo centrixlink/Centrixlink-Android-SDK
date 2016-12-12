@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">sample</string>
+    <string name="app_id">App ID</string>
+    <string name="app_key">App key</string>
+    <string name="multiautocompletetextview">MultiAutoCompleteTextView</string>
+    <string name="fullscreen">全屏</string>
+    <string name="cleanCache">删除缓存</string>
+    <string name="interscreen">插屏</string>
+    <string name="updateload">更新广告</string>
+    <string name="onlyPreload">onlyPreload</string>
+</resources>
