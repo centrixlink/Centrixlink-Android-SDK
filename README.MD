@@ -3,7 +3,7 @@
 ###版本支持及库依赖###
 
 * Centrixlink 支持 Android 4.0以上系统版本（API LEVEL 14+）
-* 第三方库依赖 Google Play Services (可选)
+* 第三方库依赖 Google Play Services (可选), libammsdk.jar	(可选)
 
 ###集成说明###
 	
@@ -13,6 +13,7 @@
 ```
   libs
 	|-----Centrixlink_[version].jar
+	|-----libammsdk.jar				(可选)
 	
 ```
 ###2. 更新 AndroidManifest.xml###
@@ -169,6 +170,12 @@ centrixlink.resetPreloadCache();
 centrixlink.preloadADListRequest();
 
 
+
+//微信朋友圈分享（可选）
+  IWXAPI api = WXAPIFactory.createWXAPI(this, "WX APP ID");
+  api.registerApp("WX APP ID");
+ centrixlink.setWXAPIObject(api);
+
 ```
 
 
@@ -177,6 +184,13 @@ centrixlink.preloadADListRequest();
 # 对Centrixlink的混淆处理
 -dontwarn com.centrixlink.**
 -keep public class com.centrixlink.**  { *; }
+
+
+# 对微信SDK的混淆处理
+-keep class com.tencent.mm.sdk.** {
+   *;
+}
+
 ```
 
 
