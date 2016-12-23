@@ -158,10 +158,18 @@ public class MainActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onAdEnd(String adid, boolean wasSuccessfulView, boolean wasCallToActionClicked) {
+            public void onAdEnd(String adid, boolean wasSuccessfullView, boolean wasCallToActionClicked) {
                 final TextView logView = (TextView) findViewById(R.id.logTextView);
 
-                outMessage(logView,"onAdUnavailable: "+adid, Log.INFO );
+                if (wasSuccessfullView)
+                {
+                    outMessage(logView,"wasSuccessfulView: "+adid, Log.INFO );
+
+                }else {
+                    outMessage(logView,"no wasSuccessfulView: "+adid, Log.INFO );
+
+                }
+                outMessage(logView,"onAdEnd: "+adid, Log.INFO );
             }
 
         };
