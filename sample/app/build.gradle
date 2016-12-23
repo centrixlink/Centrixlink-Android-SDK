@@ -4,6 +4,8 @@ android {
     compileSdkVersion 25
     buildToolsVersion "25.0.0"
     defaultConfig {
+        multiDexEnabled true
+
         applicationId "com.centrixlink.sample"
         minSdkVersion 14
         targetSdkVersion 25
