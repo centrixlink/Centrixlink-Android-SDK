@@ -11,11 +11,18 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.centrixlink.SDK.Centrixlink;
-import com.centrixlink.SDK.LogProcListener;
 import com.centrixlink.SDK.EventListener;
-
+import com.centrixlink.SDK.LogProcListener;
+import com.tencent.mm.sdk.openapi.IWXAPI;
+import com.tencent.mm.sdk.openapi.WXAPIFactory;
 
 public class MainActivity extends AppCompatActivity {
+
+    /*
+    *
+    * 微信分享
+    * */
+    private IWXAPI api;
 
     private void outMessage(final TextView textView, String message, int level)
     {
@@ -56,6 +63,19 @@ public class MainActivity extends AppCompatActivity {
 
         centrixlink.startWithAppID(this,appID,appKey);
 
+
+
+
+
+        //开启微信分享支持（可选，推荐添加）
+        /*
+         *  "WX APP ID" 填写微信开放平台申请通过的APPID
+         */
+        /*
+        api = WXAPIFactory.createWXAPI(this, "WX APP ID");
+        api.registerApp("WX APP ID");
+        centrixlink.setWXAPIObject(api);
+        */
         final Button button =(Button) findViewById(R.id.fullscreen);
 
         final Button button1 =(Button) findViewById(R.id.interscreen);

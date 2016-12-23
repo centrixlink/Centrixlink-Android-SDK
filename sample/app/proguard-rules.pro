@@ -18,4 +18,8 @@
 
 # 对Centrixlink的混淆处理
 -dontwarn com.centrixlink.**
--keep public class com.centrixlink.**  { *; }
+-keep public class com.centrixlink.**  { *; }'
+# 对微信SDK的混淆处理
+-keep class com.tencent.mm.sdk.** {
+   *;
+}
