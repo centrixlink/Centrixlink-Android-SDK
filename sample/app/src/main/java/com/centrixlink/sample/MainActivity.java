@@ -13,8 +13,6 @@ import android.widget.TextView;
 import com.centrixlink.SDK.Centrixlink;
 import com.centrixlink.SDK.EventListener;
 import com.centrixlink.SDK.LogProcListener;
-import com.tencent.mm.sdk.openapi.IWXAPI;
-import com.tencent.mm.sdk.openapi.WXAPIFactory;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -22,7 +20,7 @@ public class MainActivity extends AppCompatActivity {
     *
     * 微信分享
     * */
-    private IWXAPI api;
+//    private IWXAPI api;
 
     private void outMessage(final TextView textView, String message, int level)
     {
