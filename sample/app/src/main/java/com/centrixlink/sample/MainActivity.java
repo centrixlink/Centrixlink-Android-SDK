@@ -78,7 +78,6 @@ public class MainActivity extends AppCompatActivity {
 
         final Button button1 =(Button) findViewById(R.id.interscreen);
         final Button button2 =(Button) findViewById(R.id.cleanPreload);
-        Button button3 =(Button) findViewById(R.id.updatePreload);
         button.setEnabled(false);
         button1.setEnabled(false);
 
@@ -130,12 +129,6 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 centrixlink.resetPreloadCache();
-            }
-        });
-        button3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                centrixlink.preloadADListRequest();
             }
         });
         EventListener eventListener =  new EventListener() {
