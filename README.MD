@@ -195,9 +195,11 @@ centrixlink.preloadADListRequest();
 
 
 ##CHANGELOG
-
-###1.0.121-20161229
+###1.0.127-20161229
+* 优化部分手机文件处理逻辑
 * 修复视频广告播放失败问题
+* 修复部分广告请求丢失问题
+
 
 ###1.0.120-20161228
 * 移除SDK preloadADListRequest方法
