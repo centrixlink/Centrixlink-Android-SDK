@@ -196,6 +196,9 @@ centrixlink.preloadADListRequest();
 
 ##CHANGELOG
 
+###1.0.121-20161229
+* 修复视频广告播放失败问题
+
 ###1.0.120-20161228
 * 移除SDK preloadADListRequest方法
 * 优化首次启动广告请求逻辑
@@ -209,9 +212,7 @@ centrixlink.preloadADListRequest();
 ###1.0.114-20161223
 * 优化广告资源错误处理逻辑。
 
-
 ###1.0.110-20161223
-
 * 优化广告关闭事件回调。
 * 修正插屏部分视频显示与原视频匹配错误。
 
