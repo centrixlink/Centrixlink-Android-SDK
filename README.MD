@@ -59,6 +59,10 @@
 
 ####1. SDK初始化####
 ``` Java
+
+private EventListener eventListener;
+
+
 @Override
 protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
@@ -76,9 +80,9 @@ protected void onCreate(Bundle savedInstanceState) {
 	//设置广告播放回调事件
 	EventListener eventListener =  new EventListener() {
 	    @Override
-	    public void onAdStart() {
+	    public void onAdStart(String adid) {
 
-			//广告播放开始
+			//广告播放开始（adid 为广告ID）
 	    }
 
 
@@ -94,12 +98,13 @@ protected void onCreate(Bundle savedInstanceState) {
 	    }
 
 	    @Override
-	    public void onAdEnd(boolean wasSuccessfulView, boolean wasCallToActionClicked) {
-	   		//广告播放结束及广告播放情况（wasSuccessfulView 是否完整播放，wasCallToActionClicked 是否点击了广告）
+	    public void onAdEnd(String adid, boolean wasSuccessfulView, boolean wasCallToActionClicked) {
+	   		//广告播放结束及广告播放情况（adid 为广告ID, wasSuccessfulView 是否完整播放，wasCallToActionClicked 是否点击了广告）
 	    }
 
 	};
-	centrixlink.setEventListenner(eventListener);
+
+     centrixlink.addEventListeners(eventListener);
 
 	//配置预加载离线广告；目前最推荐true
 	boolean isOnlyPreloadAD = true 
@@ -136,7 +141,7 @@ protected void onDestroy() {
     final Centrixlink centrixlink =   Centrixlink.sharedInstance();
 
 	//重置SDK，防止内存泄漏
- 	centrixlink.setEventListenner(null);
+ 	centrixlink.removeEventListeners(eventListener);
     centrixlink.setDebugLogProc(null);
 }
 
@@ -166,10 +171,6 @@ centrixlink.isAdPlayable();
 //重置已缓存的广告
 centrixlink.resetPreloadCache();
 
-//强制更新广告列表
-centrixlink.preloadADListRequest();
-
-
 
 //微信朋友圈分享（可选）
   IWXAPI api = WXAPIFactory.createWXAPI(this, "WX APP ID");
@@ -195,6 +196,11 @@ centrixlink.preloadADListRequest();
 
 
 ##CHANGELOG
+###1.1.43-20170210
+* 优化广告SDK API接口
+* 增加Android 7.0 支持
+* 优化广告数据上报
+
 ###1.0.130-20170103
 * 修正SDK进入后台，广告播放完整判断错误
 

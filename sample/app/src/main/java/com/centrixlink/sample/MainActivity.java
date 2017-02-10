@@ -21,6 +21,7 @@ public class MainActivity extends AppCompatActivity {
     * 微信分享
     * */
 //    private IWXAPI api;
+    private EventListener eventListener;
 
     private void outMessage(final TextView textView, String message, int level)
     {
@@ -172,19 +173,27 @@ public class MainActivity extends AppCompatActivity {
             public void onAdEnd(String adid, boolean wasSuccessfullView, boolean wasCallToActionClicked) {
                 final TextView logView = (TextView) findViewById(R.id.logTextView);
 
+
+                if (wasCallToActionClicked)
+                {
+                    outMessage(logView,"was action URL: "+adid, Log.INFO );
+                }else {
+                    outMessage(logView,"no action : "+adid, Log.INFO );
+                }
+
                 if (wasSuccessfullView)
                 {
-                    outMessage(logView,"wasSuccessfulView: "+adid, Log.INFO );
+                    outMessage(logView,"wasSuccessfullview: "+adid, Log.INFO );
 
                 }else {
-                    outMessage(logView,"no wasSuccessfulView: "+adid, Log.INFO );
-
+                    outMessage(logView,"no wasSuccessfullview: "+adid, Log.INFO );
                 }
                 outMessage(logView,"onAdEnd: "+adid, Log.INFO );
             }
 
         };
-        centrixlink.setEventListenner(eventListener);
+
+        centrixlink.addEventListeners(eventListener);
 
     }
 
@@ -206,8 +215,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onDestroy() {
         super.onDestroy();
         final Centrixlink centrixlink =   Centrixlink.sharedInstance();
-
-        centrixlink.setEventListenner(null);
+        centrixlink.removeEventListeners(eventListener);
+        eventListener = null;
         centrixlink.setDebugLogProc(null);
 
     }
