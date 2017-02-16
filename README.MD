@@ -196,6 +196,10 @@ centrixlink.resetPreloadCache();
 
 
 ##CHANGELOG
+###1.1.45-20170217
+* 修正部分手机存储路径获取失败导致的Crash
+* 优化文件处理性能
+
 ###1.1.43-20170210
 * 优化广告SDK API接口
 * 增加Android 7.0 支持
