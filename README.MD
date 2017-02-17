@@ -196,6 +196,9 @@ centrixlink.resetPreloadCache();
 
 
 ##CHANGELOG
+###1.1.46-20170217
+* 优化SSL安全认证
+
 ###1.1.45-20170217
 * 修正部分手机存储路径获取失败导致的Crash
 * 优化文件处理性能
