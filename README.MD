@@ -196,6 +196,9 @@ centrixlink.resetPreloadCache();
 
 
 ##CHANGELOG
+###1.1.47-20170221
+* 优化接口并发处理逻辑
+
 ###1.1.46-20170217
 * 优化SSL安全认证
 
