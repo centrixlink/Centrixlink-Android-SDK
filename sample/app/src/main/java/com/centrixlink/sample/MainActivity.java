@@ -1,7 +1,7 @@
 package com.centrixlink.sample;
 
+import android.app.Activity;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -14,7 +14,7 @@ import com.centrixlink.SDK.Centrixlink;
 import com.centrixlink.SDK.EventListener;
 import com.centrixlink.SDK.LogProcListener;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends Activity {
 
     /*
     *
@@ -154,10 +154,10 @@ public class MainActivity extends AppCompatActivity {
 
                 if (isAdPlayable)
                 {
-                    outMessage(logView,"onAdPlayableChanged: "+ "AD resouce is ready", Log.INFO );
+                    outMessage(logView,"onAdPlayableChanged: "+ "AD resource is ready", Log.INFO );
                 }else
                 {
-                    outMessage(logView,"onAdPlayableChanged: "+ "AD resouce not ready", Log.INFO );
+                    outMessage(logView,"onAdPlayableChanged: "+ "AD resource not ready", Log.INFO );
                 }
 
             }
@@ -176,17 +176,17 @@ public class MainActivity extends AppCompatActivity {
 
                 if (wasCallToActionClicked)
                 {
-                    outMessage(logView,"was action URL: "+adid, Log.INFO );
+                    outMessage(logView,"did click : "+adid, Log.INFO );
                 }else {
-                    outMessage(logView,"no action : "+adid, Log.INFO );
+                    outMessage(logView,"no click : "+adid, Log.INFO );
                 }
 
                 if (wasSuccessfullView)
                 {
-                    outMessage(logView,"wasSuccessfullview: "+adid, Log.INFO );
+                    outMessage(logView," watch video in full: "+adid, Log.INFO );
 
                 }else {
-                    outMessage(logView,"no wasSuccessfullview: "+adid, Log.INFO );
+                    outMessage(logView,"no watch video in full: "+adid, Log.INFO );
                 }
                 outMessage(logView,"onAdEnd: "+adid, Log.INFO );
             }
