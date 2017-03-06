@@ -2,7 +2,7 @@
 
 ###1.2.0-20170306
 
-*去除 Android support依赖包（com.android.support:support-v4，compile 'com.android.support:appcompat-v7）
+* 去除 Android support依赖包（com.android.support:support-v4，compile 'com.android.support:appcompat-v7）
 
 ###1.1.47-20170221
 * 优化接口并发处理逻辑
