@@ -1,14 +1,14 @@
-#Centrixlink Android SDK集成文档#
+# Centrixlink Android SDK集成文档
 
-###版本支持及库依赖###
+### 版本支持及库依赖
 
 * Centrixlink 支持 Android 4.0以上系统版本（API LEVEL 14+）
 * 第三方库依赖 Google Play Services (可选), libammsdk.jar	(可选)
 
-###集成说明###
+### 集成说明
 	
 
-###1. 将下载的Centrixlxink SDK库文件拷贝到您项目应用的libs目录下###
+### 1. 将下载的Centrixlxink SDK库文件拷贝到您项目应用的libs目录下
 
 ```
   libs
@@ -16,7 +16,7 @@
 	|-----libammsdk.jar				(可选)
 	
 ```
-###2. 更新 AndroidManifest.xml###
+### 2. 更新 AndroidManifest.xml
 ```	xml
 
 <manifest>
@@ -55,9 +55,9 @@
 
 ```
 
-###3. 接口代码 ###
+### 3. 接口代码
 
-####1. SDK初始化####
+#### 1. SDK初始化
 ``` Java
 
 private EventListener eventListener;
@@ -147,7 +147,7 @@ protected void onDestroy() {
 
 ```
 
-####3. 广告播放####
+#### 3. 广告播放
 
 ``` Java
 
@@ -160,7 +160,7 @@ centrixlink.fetchInterstitialAD();
 
 ```
 
-####4. 其它接口 ####
+#### 4. 其它接口
 ``` Java
 		
 final Centrixlink centrixlink =   Centrixlink.sharedInstance();
@@ -180,7 +180,7 @@ centrixlink.resetPreloadCache();
 ```
 
 
-####5. 混淆设置####
+#### 5. 混淆设置
 ```
 # 对Centrixlink的混淆处理
 -dontwarn com.centrixlink.**
