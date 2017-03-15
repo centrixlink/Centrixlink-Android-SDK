@@ -1,5 +1,9 @@
 ##CHANGELOG
 
+###1.2.1-20170315
+
+* 优化广告播放响应
+
 ###1.2.0-20170306
 
 * 去除 Android support依赖包（com.android.support:support-v4，compile 'com.android.support:appcompat-v7）
