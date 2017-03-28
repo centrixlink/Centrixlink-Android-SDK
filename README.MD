@@ -1,5 +1,62 @@
 # Centrixlink Android SDK集成文档
 
+#### CHANGELOG
+
+
+##### 2.0-20170328
+
+* 新增开屏广告，优化广告播放响应
+
+##### 1.2.1-20170315
+
+* 优化广告播放响应
+
+
+##### 1.2.0-20170306
+
+* 去除 Android support依赖包（com.android.support:support-v4，compile 'com.android.support:appcompat-v7）
+
+##### 1.1.47-20170221
+* 优化接口并发处理逻辑
+
+##### 1.1.46-20170217
+* 优化SSL安全认证
+
+##### 1.1.45-20170217
+* 修正部分手机存储路径获取失败导致的Crash
+* 优化文件处理性能
+
+##### 1.1.43-20170210
+* 优化广告SDK API接口
+* 增加Android 7.0 支持
+* 优化广告数据上报
+
+##### 1.0.130-20170103
+* 修正SDK进入后台，广告播放完整判断错误
+
+##### 1.0.127-20161229
+* 优化部分手机文件处理逻辑
+* 修复视频广告播放失败问题
+* 修复部分广告请求丢失问题
+
+
+##### 1.0.120-20161228
+* 移除SDK preloadADListRequest方法
+* 优化首次启动广告请求逻辑
+* 优化部分手机SSL链接错误
+* 优化视频广告跳转IEC效率
+
+##### 1.0.116-20161226
+* 优化视频广告展示逻辑
+* 解决Leak问题
+
+##### 1.0.114-20161223
+* 优化广告资源错误处理逻辑。
+
+##### 1.0.110-20161223
+* 优化广告关闭事件回调。
+* 修正插屏部分视频显示与原视频匹配错误。
+
 ### 版本支持及库依赖
 
 * Centrixlink 支持 Android 4.0以上系统版本（API LEVEL 14+）
@@ -113,6 +170,33 @@ protected void onCreate(Bundle savedInstanceState) {
 
 	//SDK 启动
 	centrixlink.startWithAppID(this,appID,appKey);
+	//启动开屏广告并设置开屏广告监听
+	centrixlink.startSplashAD(this, new SplashADEventListener() {
+
+            @Override
+            public void onShowSplashPresentView() {
+                //开屏广告已经显示
+
+            }
+
+            @Override
+            public void onShowSplashError(String string) {
+                //开屏广告错误
+
+            }
+
+            @Override
+            public void onSplashADClosed() {
+                //开屏广告关闭
+
+            }
+
+            @Override
+            public void onSplashADClicked() {
+                //开屏广告点击事件
+
+            }
+   });
 
 }
 
@@ -194,57 +278,5 @@ centrixlink.resetPreloadCache();
 
 ```
 
-
-## CHANGELOG
-
-### 1.2.1-20170315
-
-* 优化广告播放响应
-
-
-### 1.2.0-20170306
-
-* 去除 Android support依赖包（com.android.support:support-v4，compile 'com.android.support:appcompat-v7）
-
-### 1.1.47-20170221
-* 优化接口并发处理逻辑
-
-### 1.1.46-20170217
-* 优化SSL安全认证
-
-### 1.1.45-20170217
-* 修正部分手机存储路径获取失败导致的Crash
-* 优化文件处理性能
-
-### 1.1.43-20170210
-* 优化广告SDK API接口
-* 增加Android 7.0 支持
-* 优化广告数据上报
-
-### 1.0.130-20170103
-* 修正SDK进入后台，广告播放完整判断错误
-
-### 1.0.127-20161229
-* 优化部分手机文件处理逻辑
-* 修复视频广告播放失败问题
-* 修复部分广告请求丢失问题
-
-
-### 1.0.120-20161228
-* 移除SDK preloadADListRequest方法
-* 优化首次启动广告请求逻辑
-* 优化部分手机SSL链接错误
-* 优化视频广告跳转IEC效率
-
-### 1.0.116-20161226
-* 优化视频广告展示逻辑
-* 解决Leak问题
-
-### 1.0.114-20161223
-* 优化广告资源错误处理逻辑。
-
-### 1.0.110-20161223
-* 优化广告关闭事件回调。
-* 修正插屏部分视频显示与原视频匹配错误。
 
 

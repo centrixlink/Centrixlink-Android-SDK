@@ -13,6 +13,7 @@ import android.widget.TextView;
 import com.centrixlink.SDK.Centrixlink;
 import com.centrixlink.SDK.EventListener;
 import com.centrixlink.SDK.LogProcListener;
+import com.centrixlink.SDK.SplashADEventListener;
 
 public class MainActivity extends Activity {
 
@@ -62,7 +63,32 @@ public class MainActivity extends Activity {
 
         centrixlink.startWithAppID(this,appID,appKey);
 
+        centrixlink.startSplashAD(this, new SplashADEventListener() {
+            final TextView logView = (TextView) findViewById(R.id.logTextView);
 
+            @Override
+            public void onShowSplashPresentView() {
+                outMessage(logView, "onShowSplashPresentView: ", Log.INFO);
+            }
+
+            @Override
+            public void onShowSplashError(String string) {
+                outMessage(logView, "onShowSplashError: ", Log.INFO);
+
+            }
+
+            @Override
+            public void onSplashADClosed() {
+                outMessage(logView, "onSplashADClosed: ", Log.INFO);
+
+            }
+
+            @Override
+            public void onSplashADClicked() {
+                outMessage(logView, "onSplashADClicked: ", Log.INFO);
+
+            }
+        });
 
 
 
