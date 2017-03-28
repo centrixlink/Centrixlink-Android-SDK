@@ -93,16 +93,22 @@
 		...
 
     <!-- 广告 Activity -->
-	<activity android:name="com.centrixlink.SDK.FullScreenADActivity"
+        <activity android:name="com.centrixlink.SDK.FullScreenADActivity"
             android:configChanges="keyboard|keyboardHidden|orientation|screenSize|screenLayout|smallestScreenSize"
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen"
-            android:hardwareAccelerated="true"
+            android:process=":adprocess"
             tools:ignore="InnerclassSeparator" />
-    <activity android:name="com.centrixlink.SDK.InterstitialFADActivity"
+
+        <activity android:name="com.centrixlink.SDK.InterstitialFADActivity"
             android:configChanges="keyboard|keyboardHidden|orientation|screenSize|screenLayout|smallestScreenSize"
             android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen"
             android:hardwareAccelerated="true"
+            android:process=":adprocess"
             tools:ignore="InnerclassSeparator" />
+      <!-- 广告 service -->
+        <service
+            android:name="com.centrixlink.SDK.service.CentrixlinkService"
+            android:exported="false" />
 
 
     </application>
@@ -202,7 +208,7 @@ protected void onCreate(Bundle savedInstanceState) {
 
 ```
 
-####2. 每个Activty 生命周期与SDK关联处理####
+#### 2. 每个Activty 生命周期与SDK关联处理
 
 ``` Java
 
