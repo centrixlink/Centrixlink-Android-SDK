@@ -92,6 +92,8 @@ public class MainActivity extends Activity {
 
 
 
+        final Activity mActivity = this;
+
         //开启微信分享支持（可选，推荐添加）
         /*
          *  "WX APP ID" 填写微信开放平台申请通过的APPID
@@ -142,14 +144,14 @@ public class MainActivity extends Activity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                centrixlink.fetchAD();
+                centrixlink.fetchAD(mActivity);
             }
         });
 
         button1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                centrixlink.fetchInterstitialAD();
+                centrixlink.fetchInterstitialAD(mActivity,0.2f,0.2f,0.8f);
             }
         });
         button2.setOnClickListener(new View.OnClickListener() {

@@ -147,6 +147,8 @@ protected void onCreate(Bundle savedInstanceState) {
             }
    });
 
+
+
 }
 
 ```
@@ -186,10 +188,22 @@ protected void onDestroy() {
 
 final Centrixlink centrixlink =   Centrixlink.sharedInstance();
 //播放全屏广告（推荐）
-centrixlink.fetchAD();
+／**
+ @param Activity activity 当前activity
+ */
+centrixlink.fetchAD(activity);
 
 //播放插屏广告
-centrixlink.fetchInterstitialAD();
+
+／**
+ 插屏广告的布局
+ (注意：所有参数均为百分比，取值范围:[0 1]，插屏布局依照com.android.support:percent实现)
+ @param Activity activity 当前activity
+ @param float topMarginPercent 上边距
+ @param float leftMarginPercent 左边距
+ @param float videoScale 短边占比(例如：在竖屏模式下，指的是指定区域的宽占整个屏幕宽的比例，反之横屏模式下就是指定区域的高占整个屏幕高的比例)
+ */
+centrixlink.fetchInterstitialAD(activity, topMarginPercent,leftMarginPercent,videoScale)
 
 ```
 
@@ -207,6 +221,8 @@ centrixlink.resetPreloadCache();
 
 //微信朋友圈分享（可选）
   IWXAPI api = WXAPIFactory.createWXAPI(this, "WX APP ID");
+
+
   api.registerApp("WX APP ID");
  centrixlink.setWXAPIObject(api);
 
