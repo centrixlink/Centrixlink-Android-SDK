@@ -1,9 +1,10 @@
 # Centrixlink Android SDK集成文档
 
-### 版本支持及库依赖
+### 版本支持及依赖
 
 * Centrixlink 支持 Android 4.0以上系统版本（API LEVEL 14+）
 * 第三方库依赖 Google Play Services (可选), libammsdk.jar	(可选)
+* 申请：[App ID、App Key](https://dashboard.centrixlink.com/login)
 
 ### 集成说明
 
@@ -58,12 +59,9 @@
 
 ```
 
-### 3. APPID及APPKEY申请
-> [申请APPID及APPKEY](https://dashboard.centrixlink.com/login)
+### 3. 接口代码
 
-### 4. 接口代码
-
-#### 4.1. SDK初始化及开屏图片广告显示
+#### 3.1. SDK初始化及开屏图片广告显示
 ``` Java
 private EventListener eventListener;
 
@@ -149,7 +147,7 @@ protected void onCreate(Bundle savedInstanceState) {
 
 ```
 
-#### 4.2. 每个Activty 生命周期与SDK关联处理
+#### 3.2. 每个Activty 生命周期与SDK关联处理
 
 ``` Java
 @Override
@@ -177,7 +175,7 @@ protected void onDestroy() {
 
 ```
 
-#### 4.3. 视频广告播放
+#### 3.3. 视频广告播放
 
 ``` Java
 final Centrixlink centrixlink =   Centrixlink.sharedInstance();
@@ -201,7 +199,7 @@ centrixlink.fetchInterstitialAD(activity, topMarginPercent,leftMarginPercent,vid
 
 ```
 
-#### 4.4. 其它接口
+#### 3.4. 其它接口
 ``` Java		
 final Centrixlink centrixlink =   Centrixlink.sharedInstance();
 
@@ -221,7 +219,7 @@ centrixlink.resetPreloadCache();
 
 ```
 
-#### 4.5. 混淆设置
+#### 3.5. 混淆设置
 ```
 # 对Centrixlink SDK的混淆处理
 -dontwarn com.centrixlink.**
