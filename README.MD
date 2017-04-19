@@ -6,7 +6,6 @@
 * 第三方库依赖 Google Play Services (可选), libammsdk.jar	(可选)
 
 ### 集成说明
-	
 
 ### 1. 将下载的Centrixlxink SDK库文件拷贝到您项目应用的libs目录下
 
@@ -16,9 +15,9 @@
 	|-----libammsdk.jar				(可选)
 	
 ```
+
 ### 2. 更新 AndroidManifest.xml
 ```	xml
-
 <manifest>
 
 	...
@@ -58,7 +57,6 @@
 
 </manifest>
 
-
 ```
 
 ### 3. APPID及APPKEY申请
@@ -68,9 +66,7 @@
 
 #### 1. SDK初始化及开屏图片广告显示
 ``` Java
-
 private EventListener eventListener;
-
 
 @Override
 protected void onCreate(Bundle savedInstanceState) {
@@ -150,8 +146,6 @@ protected void onCreate(Bundle savedInstanceState) {
             }
    });
 
-
-
 }
 
 ```
@@ -159,7 +153,6 @@ protected void onCreate(Bundle savedInstanceState) {
 #### 2. 每个Activty 生命周期与SDK关联处理
 
 ``` Java
-
 @Override
 protected void onPause() {
     super.onPause();
@@ -188,7 +181,6 @@ protected void onDestroy() {
 #### 3. 视频广告播放
 
 ``` Java
-
 final Centrixlink centrixlink =   Centrixlink.sharedInstance();
 //全屏播放视频广告（推荐）
 ／**
@@ -211,8 +203,7 @@ centrixlink.fetchInterstitialAD(activity, topMarginPercent,leftMarginPercent,vid
 ```
 
 #### 4. 其它接口
-``` Java
-		
+``` Java		
 final Centrixlink centrixlink =   Centrixlink.sharedInstance();
 
 //检查当前是否可以播放视频广告
@@ -231,7 +222,6 @@ centrixlink.resetPreloadCache();
 
 ```
 
-
 #### 5. 混淆设置
 ```
 # 对Centrixlink SDK的混淆处理
@@ -245,6 +235,3 @@ centrixlink.resetPreloadCache();
 }
 
 ```
-
-
-
