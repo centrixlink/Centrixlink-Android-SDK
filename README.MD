@@ -8,7 +8,7 @@
 
 ### 集成说明
 
-### 1 将下载的Centrixlxink SDK库文件拷贝到您项目应用的libs目录下
+### 1 将下载的Centrixlxink SDK库文件拷贝到项目应用的libs目录下
 
 ```
   libs
@@ -59,7 +59,7 @@
 
 ```
 
-### 3 接口代码
+### 3 集成说明
 
 #### 3.1 SDK初始化
 ``` Java
@@ -96,7 +96,6 @@ protected void onCreate(Bundle savedInstanceState) {
 ##### 3.2.1 设置视频广告播放回调事件
 
 ``` Java
-
 final Centrixlink centrixlink =   Centrixlink.sharedInstance();
 
 EventListener eventListener =  new EventListener() {
@@ -128,7 +127,7 @@ EventListener eventListener =  new EventListener() {
  centrixlink.addEventListeners(eventListener);
 
 ```
-##### 3.2.2 全屏视频广告播放
+##### 3.2.2 全屏播放视频广告
 
 ``` Java
 
