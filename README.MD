@@ -61,7 +61,10 @@
 
 ```
 
-### 3. 接口代码
+### 3. APPID及APPKEY申请
+> [申请APPID及APPKEY](https://dashboard.centrixlink.com/login)
+
+### 4. 接口代码
 
 #### 1. SDK初始化及开屏图片广告显示
 ``` Java
