@@ -13,7 +13,6 @@
   libs
 	|-----Centrixlink_[version].jar
 	|-----libammsdk.jar				(可选)
-	
 ```
 
 ### 2. 更新 AndroidManifest.xml
@@ -64,7 +63,7 @@
 
 ### 4. 接口代码
 
-#### 1. SDK初始化及开屏图片广告显示
+#### 4.1. SDK初始化及开屏图片广告显示
 ``` Java
 private EventListener eventListener;
 
@@ -150,7 +149,7 @@ protected void onCreate(Bundle savedInstanceState) {
 
 ```
 
-#### 2. 每个Activty 生命周期与SDK关联处理
+#### 4.2. 每个Activty 生命周期与SDK关联处理
 
 ``` Java
 @Override
@@ -178,7 +177,7 @@ protected void onDestroy() {
 
 ```
 
-#### 3. 视频广告播放
+#### 4.3. 视频广告播放
 
 ``` Java
 final Centrixlink centrixlink =   Centrixlink.sharedInstance();
@@ -202,7 +201,7 @@ centrixlink.fetchInterstitialAD(activity, topMarginPercent,leftMarginPercent,vid
 
 ```
 
-#### 4. 其它接口
+#### 4.4. 其它接口
 ``` Java		
 final Centrixlink centrixlink =   Centrixlink.sharedInstance();
 
@@ -222,7 +221,7 @@ centrixlink.resetPreloadCache();
 
 ```
 
-#### 5. 混淆设置
+#### 4.5. 混淆设置
 ```
 # 对Centrixlink SDK的混淆处理
 -dontwarn com.centrixlink.**
