@@ -160,7 +160,7 @@ centrixlink.fetchInterstitialAD(activity, topMarginPercent,leftMarginPercent,vid
 
 ```
 
-##### 3.3 展示开屏图片广告并设置开屏图片广告监听
+#### 3.3 展示开屏图片广告并设置开屏图片广告监听
 
 ``` Java
 
