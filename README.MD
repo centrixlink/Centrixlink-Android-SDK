@@ -63,7 +63,7 @@
 
 ### 3. 接口代码
 
-#### 1. SDK初始化
+#### 1. SDK初始化及开屏图片广告显示
 ``` Java
 
 private EventListener eventListener;
@@ -83,66 +83,66 @@ protected void onCreate(Bundle savedInstanceState) {
 	final String appKey = "申请APPID关联的APPKEY";
 
 
-	//设置广告播放回调事件
+	//设置视频广告播放回调事件
 	EventListener eventListener =  new EventListener() {
 	    @Override
 	    public void onAdStart(String adid) {
 
-			//广告播放开始（adid 为广告ID）
+		//视频广告播放开始（adid 为广告ID）
 	    }
 
 
 	    @Override
 	    public void onAdPlayableChanged(boolean isAdPlayable) {
-	       	//当前广告准备状态; true已准备好,false暂时未准备完毕
+	       	//当前视频广告准备状态; true为准备好,false为未准备好
 
 	    }
 
 	    @Override
 	    public void onAdUnavailable(String reason) {
-	        //播放失败原因，reason 为失败原因信息
+	        //视频广告播放失败，reason 为失败原因信息
 	    }
 
 	    @Override
 	    public void onAdEnd(String adid, boolean wasSuccessfulView, boolean wasCallToActionClicked) {
-	   		//广告播放结束及广告播放情况（adid 为广告ID, wasSuccessfulView 是否完整播放，wasCallToActionClicked 是否点击了广告）
+	        //视频广告播放结束及广告播放情况（adid 为视频广告ID, wasSuccessfulView 为视频广告是否完整播放，wasCallToActionClicked 是否点击了视频广告）
 	    }
 
 	};
 
      centrixlink.addEventListeners(eventListener);
 
-	//配置预加载离线广告；目前最推荐true
+	//配置预加载视频广告；目前最推荐true
 	boolean isOnlyPreloadAD = true 
 
 	centrixlink.setIsOnlyPreload(isOnlyPreloadAD);
 
 	//SDK 启动
 	centrixlink.startWithAppID(this,appID,appKey);
-	//启动开屏广告并设置开屏广告监听
+	
+	//启动开屏图片广告并设置开屏图片广告监听
 	centrixlink.startSplashAD(this, new SplashADEventListener() {
 
             @Override
             public void onShowSplashPresentView() {
-                //开屏广告已经显示
+                //开屏图片广告已经显示
 
             }
 
             @Override
             public void onShowSplashError(String string) {
-                //开屏广告错误
-
+                //开屏图片广告错误
             }
 
             @Override
             public void onSplashADClosed() {
-                //开屏广告关闭
+                //开屏图片广告关闭
 
             }
 
             @Override
             public void onSplashADClicked() {
-                //开屏广告点击事件
+                //开屏图片广告点击事件
 
             }
    });
@@ -175,33 +175,33 @@ protected void onDestroy() {
     super.onDestroy();
     final Centrixlink centrixlink =   Centrixlink.sharedInstance();
 
-	//重置SDK，防止内存泄漏
- 	centrixlink.removeEventListeners(eventListener);
+    //重置SDK，防止内存泄漏
+    centrixlink.removeEventListeners(eventListener);
     centrixlink.setDebugLogProc(null);
 }
 
 ```
 
-#### 3. 广告播放
+#### 3. 视频广告播放
 
 ``` Java
 
 final Centrixlink centrixlink =   Centrixlink.sharedInstance();
-//播放全屏广告（推荐）
+//全屏播放视频广告（推荐）
 ／**
  @param Activity activity 当前activity
  */
 centrixlink.fetchAD(activity);
 
-//播放插屏广告
+//插屏播放视频广告
 
 ／**
- 插屏广告的布局
+ 播放插屏视频广告的布局
  (注意：所有参数均为百分比，取值范围:[0 1]，插屏布局依照com.android.support:percent实现)
  @param Activity activity 当前activity
  @param float topMarginPercent 上边距
  @param float leftMarginPercent 左边距
- @param float videoScale 短边占比(例如：在竖屏模式下，指的是指定区域的宽占整个屏幕宽的比例，反之横屏模式下就是指定区域的高占整个屏幕高的比例)
+ @param float videoScale 短边占比(例如：在竖屏模式下，指的是指定区域的视频广告播放窗口宽占整个屏幕宽的比例，反之横屏模式下就是指定区域的视频广告播放窗口高占整个屏幕高的比例)
  */
 centrixlink.fetchInterstitialAD(activity, topMarginPercent,leftMarginPercent,videoScale)
 
@@ -212,18 +212,18 @@ centrixlink.fetchInterstitialAD(activity, topMarginPercent,leftMarginPercent,vid
 		
 final Centrixlink centrixlink =   Centrixlink.sharedInstance();
 
-//检查当前是否可以播放广告
+//检查当前是否可以播放视频广告
 centrixlink.isAdPlayable();
 
-//重置已缓存的广告
+//重置已预加载广告
 centrixlink.resetPreloadCache();
 
 
 //微信朋友圈分享（可选）
-  IWXAPI api = WXAPIFactory.createWXAPI(this, "WX APP ID");
+ IWXAPI api = WXAPIFactory.createWXAPI(this, "WX APP ID");
 
 
-  api.registerApp("WX APP ID");
+ api.registerApp("WX APP ID");
  centrixlink.setWXAPIObject(api);
 
 ```
@@ -231,7 +231,7 @@ centrixlink.resetPreloadCache();
 
 #### 5. 混淆设置
 ```
-# 对Centrixlink的混淆处理
+# 对Centrixlink SDK的混淆处理
 -dontwarn com.centrixlink.**
 -keep public class com.centrixlink.**  { *; }
 
