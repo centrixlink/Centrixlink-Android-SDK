@@ -103,24 +103,24 @@ protected void onCreate(Bundle savedInstanceState) {
 
 	    @Override
 	    public void onAdUnavailable(String reason) {
-	        //视频广告播放失败，reason 为失败原因信息
+	        //视频广告播放失败，reason为失败原因信息
 	    }
 
 	    @Override
 	    public void onAdEnd(String adid, boolean wasSuccessfulView, boolean wasCallToActionClicked) {
-	        //视频广告播放结束及广告播放情况（adid 为视频广告ID, wasSuccessfulView 为视频广告是否完整播放，wasCallToActionClicked 是否点击了视频广告）
+	        //视频广告播放结束及广告播放情况（adid为视频广告ID, wasSuccessfulView为视频广告是否完整播放，wasCallToActionClicked是否点击了视频广告）
 	    }
 
 	};
 
      centrixlink.addEventListeners(eventListener);
 
-	//配置预加载视频广告；目前最推荐true
+	//配置预加载视频广告，目前推荐为true
 	boolean isOnlyPreloadAD = true 
 
 	centrixlink.setIsOnlyPreload(isOnlyPreloadAD);
 
-	//SDK 启动
+	//SDK启动
 	centrixlink.startWithAppID(this,appID,appKey);
 	
 	//启动开屏图片广告并设置开屏图片广告监听
@@ -204,7 +204,7 @@ centrixlink.fetchAD(activity);
  @param Activity activity 当前activity
  @param float topMarginPercent 上边距
  @param float leftMarginPercent 左边距
- @param float videoScale 短边占比(例如：在竖屏模式下，指的是指定区域的视频广告播放窗口宽占整个屏幕宽的比例，反之横屏模式下就是指定区域的视频广告播放窗口高占整个屏幕高的比例)
+ @param float videoScale 短边占比(例如：在竖屏模式下，指的是视频广告播放窗口宽度占整个屏幕宽的比例，反之横屏模式下是指视频广告播放窗口高度占整个屏幕高的比例)
  */
 centrixlink.fetchInterstitialAD(activity, topMarginPercent,leftMarginPercent,videoScale)
 
@@ -218,11 +218,11 @@ final Centrixlink centrixlink =   Centrixlink.sharedInstance();
 //检查当前是否可以播放视频广告
 centrixlink.isAdPlayable();
 
-//重置已预加载广告
+//重置已预加载视频广告
 centrixlink.resetPreloadCache();
 
 
-//微信朋友圈分享（可选）
+//微信朋友圈分享（分享endcard页面，此项为可选）
  IWXAPI api = WXAPIFactory.createWXAPI(this, "WX APP ID");
 
 
