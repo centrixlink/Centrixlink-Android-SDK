@@ -93,7 +93,7 @@ protected void onCreate(Bundle savedInstanceState) {
 #### 3.2 视频广告
 
 
-##### 3.2.1 设置视频广告播放回调事件
+##### 3.2.1 视频广告播放回调事件设置
 
 ``` Java
 final Centrixlink centrixlink =   Centrixlink.sharedInstance();
@@ -193,7 +193,7 @@ centrixlink.startSplashAD(this, new SplashADEventListener() {
    
 ```
 
-#### 3.4 每个Activty 生命周期与SDK关联处理
+#### 3.4 Activty生命周期与SDK关联处理
 
 ``` Java
 @Override
