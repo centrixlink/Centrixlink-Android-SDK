@@ -90,7 +90,7 @@ protected void onCreate(Bundle savedInstanceState) {
 ```
 
 
-#### 3.2 视频广告播放
+#### 3.2 视频广告
 
 
 ##### 3.2.1 设置视频广告播放回调事件
@@ -119,7 +119,7 @@ EventListener eventListener =  new EventListener() {
 
 	    @Override
 	    public void onAdEnd(String adid, boolean wasSuccessfulView, boolean wasCallToActionClicked) {
-	        //视频广告播放结束及广告播放情况（adid为视频广告ID, wasSuccessfulView为视频广告是否完整播放，wasCallToActionClicked是否点击了视频广告）
+	        //视频广告播放结束及广告播放情况（adid为视频广告ID, wasSuccessfulView为视频广告是否完整播放，wasCallToActionClicked为是否点击了视频广告）
 	    }
 
 	};
@@ -140,15 +140,15 @@ final Centrixlink centrixlink =   Centrixlink.sharedInstance();
 centrixlink.fetchAD(activity);
 
 ```
-##### 3.2.3 插屏播放视频广告
+##### 3.2.3 非全屏播放视频广告
 
 ``` Java
 
 final Centrixlink centrixlink =   Centrixlink.sharedInstance();
 
 ／**
- 播放插屏视频广告的布局
- (注意：所有参数均为百分比，取值范围:[0 1]，插屏布局依照com.android.support:percent实现)
+ 播放非全屏视频广告的布局
+ (注意：所有参数均为百分比，取值范围:[0 1]，非全屏布局依照com.android.support:percent实现)
  @param Activity activity 当前activity
  @param float topMarginPercent 上边距
  @param float leftMarginPercent 左边距
@@ -159,7 +159,7 @@ centrixlink.fetchInterstitialAD(activity, topMarginPercent,leftMarginPercent,vid
 
 ```
 
-#### 3.3 展示开屏图片广告并设置开屏图片广告监听
+#### 3.3 开屏图片广告及监听设置
 
 ``` Java
 
