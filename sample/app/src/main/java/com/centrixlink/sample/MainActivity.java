@@ -10,10 +10,13 @@ import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.centrixlink.SDK.AD_PlayError;
 import com.centrixlink.SDK.Centrixlink;
-import com.centrixlink.SDK.EventListener;
-import com.centrixlink.SDK.LogProcListener;
+import com.centrixlink.SDK.CentrixlinkVideoADListener;
+import com.centrixlink.SDK.DebugLogCallBack;
 import com.centrixlink.SDK.SplashADEventListener;
+
+import java.util.Map;
 
 public class MainActivity extends Activity {
 
@@ -22,7 +25,7 @@ public class MainActivity extends Activity {
     * 微信分享
     * */
 //    private IWXAPI api;
-    private EventListener eventListener;
+    private CentrixlinkVideoADListener eventListener;
 
     private void outMessage(final TextView textView, String message, int level)
     {
@@ -58,36 +61,47 @@ public class MainActivity extends Activity {
 
         final Centrixlink centrixlink =   Centrixlink.sharedInstance();
 
-        final String appID = "APPID";
-        final String appKey = "APPKEY";
+
+        final String  appID = "APPID";
+        final String  appKey = "APPKEY";
 
         centrixlink.startWithAppID(this,appID,appKey);
 
-        centrixlink.startSplashAD(this, new SplashADEventListener() {
+        centrixlink.playSplashAD(this, new SplashADEventListener() {
             final TextView logView = (TextView) findViewById(R.id.logTextView);
 
             @Override
-            public void onShowSplashPresentView() {
-                outMessage(logView, "onShowSplashPresentView: ", Log.INFO);
+            public void centrixlinkSplashADDidShow(Map map) {
+                outMessage(logView, "splashADDidShow: ", Log.INFO);
             }
 
             @Override
-            public void onShowSplashError(String string) {
-                outMessage(logView, "onShowSplashError: ", Log.INFO);
+            public void centrixlinkSplashADAction(Map map) {
+                outMessage(logView, "splashADAction: ", Log.INFO);
+            }
+
+            @Override
+            public void centrixlinkSplashADShowFail(AD_PlayError error) {
+                outMessage(logView, "splashADShowFail: " + error.toString(), Log.INFO);
+            }
+
+            @Override
+            public void centrixlinkSplashADClosed(Map map) {
+                outMessage(logView, "splashADClosed: ", Log.INFO);
 
             }
 
             @Override
-            public void onSplashADClosed() {
-                outMessage(logView, "onSplashADClosed: ", Log.INFO);
+            public void centrixlinkSplashADFinished(Map map) {
+                outMessage(logView, "splashADFinished: ", Log.INFO);
 
             }
 
             @Override
-            public void onSplashADClicked() {
-                outMessage(logView, "onSplashADClicked: ", Log.INFO);
-
+            public void centrixlinkSplashADSkip(Map map) {
+                outMessage(logView, "splashADSkip: ", Log.INFO);
             }
+
         });
 
 
@@ -106,7 +120,6 @@ public class MainActivity extends Activity {
         final Button button =(Button) findViewById(R.id.fullscreen);
 
         final Button button1 =(Button) findViewById(R.id.interscreen);
-        final Button button2 =(Button) findViewById(R.id.cleanPreload);
         button.setEnabled(false);
         button1.setEnabled(false);
 
@@ -116,7 +129,7 @@ public class MainActivity extends Activity {
         EditText appkeyview = (EditText) findViewById(R.id.appkey);
         appkeyview.setText(appKey);
 
-        centrixlink.setDebugLogProc(new LogProcListener() {
+        centrixlink.setDebugCallBack(new DebugLogCallBack() {
             @Override
             public void onLogMessage(final String message, final int level) {
 
@@ -132,91 +145,95 @@ public class MainActivity extends Activity {
         });
 
 
-        CheckBox onlyPreloadCheck = (CheckBox) findViewById(R.id.onlyPreload);
+        CheckBox autoRotateADDirection = (CheckBox) findViewById(R.id.autoRoration);
 
-        onlyPreloadCheck.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+        autoRotateADDirection.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                centrixlink.setIsOnlyPreload(b);
+
+                centrixlink.setEnableFollowAppOrientation(b);
             }
         });
 
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                centrixlink.fetchAD(mActivity);
+                centrixlink.playAD(mActivity);
             }
         });
 
         button1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                centrixlink.fetchInterstitialAD(mActivity,0.2f,0.2f,0.8f);
+                centrixlink.playUnFullScreenAD(mActivity,0.2f,0.2f,0.8f);
             }
         });
-        button2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                centrixlink.resetPreloadCache();
-            }
-        });
-        EventListener eventListener =  new EventListener() {
-            @Override
-            public void onAdStart(String adid) {
-                final TextView logView = (TextView) findViewById(R.id.logTextView);
 
-                outMessage(logView,"onAdStart: "+adid, Log.INFO );
+        CentrixlinkVideoADListener eventListener =  new CentrixlinkVideoADListener() {
+            @Override
+            public void centrixLinkVideoADWillShow(Map map) {
+                final TextView logView = (TextView) findViewById(R.id.logTextView);
+                outMessage(logView, "centrixLinkVideoADWillShow: "+ map.get("ADID"), Log.INFO);
             }
 
-
             @Override
-            public void onAdPlayableChanged(boolean isAdPlayable) {
+            public void centrixLinkVideoADDidShow(Map map) {
                 final TextView logView = (TextView) findViewById(R.id.logTextView);
 
-                final Button button =(Button) findViewById(R.id.fullscreen);
+                outMessage(logView, "centrixLinkVideoADDidShow: " + map.get("ADID"), Log.INFO);
+            }
 
-                final Button button1 =(Button) findViewById(R.id.interscreen);
+            @Override
+            public void centrixLinkHasPreloadAD(boolean isPreloadFinished) {
+                final TextView logView = (TextView) findViewById(R.id.logTextView);
 
-                button.setEnabled(isAdPlayable);
-                button1.setEnabled(isAdPlayable);
+                final Button button = (Button) findViewById(R.id.fullscreen);
 
-                if (isAdPlayable)
-                {
-                    outMessage(logView,"onAdPlayableChanged: "+ "AD resource is ready", Log.INFO );
-                }else
-                {
-                    outMessage(logView,"onAdPlayableChanged: "+ "AD resource not ready", Log.INFO );
+                final Button button1 = (Button) findViewById(R.id.interscreen);
+
+                button.setEnabled(isPreloadFinished);
+                button1.setEnabled(isPreloadFinished);
+
+                if (isPreloadFinished) {
+                    outMessage(logView, "centrixLinkHasPreloadAD: " + "AD resouce is ready", Log.INFO);
+                } else {
+                    outMessage(logView, "centrixLinkHasPreloadAD: " + "AD resouce not ready", Log.INFO);
                 }
 
             }
 
             @Override
-            public void onAdUnavailable(String reason) {
+            public void centrixLinkVideoADShowFail(Map map) {
                 final TextView logView = (TextView) findViewById(R.id.logTextView);
 
-                outMessage(logView,"onAdUnavailable: "+ reason, Log.INFO );
+                outMessage(logView, "centrixLinkVideoADShowFail: " + map.get("error"), Log.INFO);
             }
 
             @Override
-            public void onAdEnd(String adid, boolean wasSuccessfullView, boolean wasCallToActionClicked) {
+            public void centrixLinkVideoADAction(Map map) {
+                final TextView logView = (TextView) findViewById(R.id.logTextView);
+                outMessage(logView, "centrixLinkVideoADAction: " + map.get("ADID"), Log.INFO);
+            }
+
+            @Override
+            public void centrixLinkVideoADClose(Map map) {
                 final TextView logView = (TextView) findViewById(R.id.logTextView);
 
 
-                if (wasCallToActionClicked)
-                {
-                    outMessage(logView,"did click : "+adid, Log.INFO );
-                }else {
-                    outMessage(logView,"no click : "+adid, Log.INFO );
+                if ((boolean) (map.get("isAction"))) {
+                    outMessage(logView, "was action URL: " + map.get("ADID"), Log.INFO);
+                } else {
+                    outMessage(logView, "no action : " + map.get("ADID"), Log.INFO);
                 }
 
-                if (wasSuccessfullView)
-                {
-                    outMessage(logView," watch video in full: "+adid, Log.INFO );
+                if ((boolean) (map.get("playFinished"))) {
+                    outMessage(logView, "wasSuccessfullView: " + map.get("ADID"), Log.INFO);
 
-                }else {
-                    outMessage(logView,"no watch video in full: "+adid, Log.INFO );
+                } else {
+                    outMessage(logView, "no wasSuccessfullView: " + map.get("ADID"), Log.INFO);
+
                 }
-                outMessage(logView,"onAdEnd: "+adid, Log.INFO );
+                outMessage(logView, "centrixLinkVideoADClose: " + map.get("ADID"), Log.INFO);
             }
 
         };
@@ -245,7 +262,7 @@ public class MainActivity extends Activity {
         final Centrixlink centrixlink =   Centrixlink.sharedInstance();
         centrixlink.removeEventListeners(eventListener);
         eventListener = null;
-        centrixlink.setDebugLogProc(null);
+        centrixlink.setDebugCallBack(null);
 
     }
 }

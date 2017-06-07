@@ -11,22 +11,13 @@
     tools:context="com.centrixlink.sample.MainActivity">
 
 
-    <Button
-        android:text="@string/cleanCache"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_toRightOf="@+id/interscreen"
-        android:layout_toEndOf="@+id/interscreen"
-        android:id="@+id/cleanPreload"
-        android:layout_alignParentTop="true" />
-
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="textPersonName"
         android:text="@string/app_id"
         android:ems="10"
-        android:layout_below="@+id/onlyPreload"
+        android:layout_below="@+id/autoRoration"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:id="@+id/appid"
@@ -87,12 +78,12 @@
         android:layout_alignBottom="@+id/interscreen" />
 
     <CheckBox
-        android:text="@string/onlyPreload"
+        android:text="@string/autoRoration"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/fullscreen"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_marginBottom="23dp"
-        android:id="@+id/onlyPreload" />
+        android:id="@+id/autoRoration" />
 </RelativeLayout>

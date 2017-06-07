@@ -5,7 +5,7 @@
     <string name="multiautocompletetextview">MultiAutoCompleteTextView</string>
     <string name="fullscreen">全屏</string>
     <string name="cleanCache">删除缓存</string>
-    <string name="interscreen">插屏</string>
+    <string name="interscreen">非全屏</string>
     <string name="updateload">更新广告</string>
-    <string name="onlyPreload">onlyPreload</string>
+    <string name="autoRoration">跟随应用旋转</string>
 </resources>
