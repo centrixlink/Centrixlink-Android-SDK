@@ -260,16 +260,16 @@
     </entry>
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
-    <OptionsSetting value="true" id="Add" />
-    <OptionsSetting value="true" id="Remove" />
-    <OptionsSetting value="true" id="Checkout" />
-    <OptionsSetting value="true" id="Update" />
-    <OptionsSetting value="true" id="Status" />
-    <OptionsSetting value="true" id="Edit" />
+    <OptionsSetting value="$idea.case.sensitive.fs$" id="Add" />
+    <OptionsSetting value="$idea.case.sensitive.fs$" id="Remove" />
+    <OptionsSetting value="$idea.case.sensitive.fs$" id="Checkout" />
+    <OptionsSetting value="$idea.case.sensitive.fs$" id="Update" />
+    <OptionsSetting value="$idea.case.sensitive.fs$" id="Status" />
+    <OptionsSetting value="$idea.case.sensitive.fs$" id="Edit" />
     <ConfirmationsSetting value="0" id="Add" />
     <ConfirmationsSetting value="0" id="Remove" />
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" default="true" assert-keyword="true" jdk-15="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" default="$idea.case.sensitive.fs$" assert-keyword="$idea.case.sensitive.fs$" jdk-15="$idea.case.sensitive.fs$" project-jdk-name="1.8 (1)" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">

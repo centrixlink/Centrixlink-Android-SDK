@@ -10,11 +10,9 @@ import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.centrixlink.SDK.AD_PlayError;
 import com.centrixlink.SDK.Centrixlink;
 import com.centrixlink.SDK.CentrixlinkVideoADListener;
 import com.centrixlink.SDK.DebugLogCallBack;
-import com.centrixlink.SDK.SplashADEventListener;
 
 import java.util.Map;
 
@@ -62,47 +60,9 @@ public class MainActivity extends Activity {
         final Centrixlink centrixlink =   Centrixlink.sharedInstance();
 
 
-        final String  appID = "APPID";
-        final String  appKey = "APPKEY";
+        String   appID = "APPID";
+        String   appKey = "APPKEY";
 
-        centrixlink.startWithAppID(this,appID,appKey);
-
-        centrixlink.playSplashAD(this, new SplashADEventListener() {
-            final TextView logView = (TextView) findViewById(R.id.logTextView);
-
-            @Override
-            public void centrixlinkSplashADDidShow(Map map) {
-                outMessage(logView, "splashADDidShow: ", Log.INFO);
-            }
-
-            @Override
-            public void centrixlinkSplashADAction(Map map) {
-                outMessage(logView, "splashADAction: ", Log.INFO);
-            }
-
-            @Override
-            public void centrixlinkSplashADShowFail(AD_PlayError error) {
-                outMessage(logView, "splashADShowFail: " + error.toString(), Log.INFO);
-            }
-
-            @Override
-            public void centrixlinkSplashADClosed(Map map) {
-                outMessage(logView, "splashADClosed: ", Log.INFO);
-
-            }
-
-            @Override
-            public void centrixlinkSplashADFinished(Map map) {
-                outMessage(logView, "splashADFinished: ", Log.INFO);
-
-            }
-
-            @Override
-            public void centrixlinkSplashADSkip(Map map) {
-                outMessage(logView, "splashADSkip: ", Log.INFO);
-            }
-
-        });
 
 
 
