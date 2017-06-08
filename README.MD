@@ -271,12 +271,12 @@ centrixlink.playSplashAD(this, new SplashADEventListener() {
             public void centrixlinkSplashADShowFail(AD_PlayError error) {
             //开屏图片广告显示失败
             /* AD_PlayError
-            101    本地没有可播放广告
             200    请求超时
-            201     本地无缓存
+            201    本地无缓存
             202    接口请求错误返回
             203    要播放的开屏广告和本地预加载的不一致
-            204    其他异常
+            204    当前开屏广告功能被服务器关闭
+            205    其他异常
 
             }
 
