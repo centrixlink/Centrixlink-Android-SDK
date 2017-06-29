@@ -96,7 +96,7 @@
 
 |   | Before 2.3 | 2.3 |
 | --- | --- | --- |
-| 显示开屏广告 | startSplashAD(Activity activity,SplashADEventListener splashADEventListener) | public void playSplashAD(final Activity activity, SplashADEventListener listener) <br></br><br>public void playSplashAD(final Activity activity, ViewGroup viewGroup, SplashADEventListener listener)</br>|
+| 显示开屏广告 | startSplashAD(Activity activity,SplashADEventListener splashADEventListener) | public void playSplashAD(final Activity activity, SplashADEventListener listener) 自定义ViewGroup开屏广告调用 <br>public void playSplashAD(final Activity activity, ViewGroup viewGroup, SplashADEventListener listener)<br>|
 | 显示视频广告 | public boolean fetchAD(Activity activity) | public boolean playAD(Activity activity, boolean isOnline) |
 | 显示非全屏视频广告 | public boolean fetchInterstitialAD(Activity activity,float topMarginPercent,float leftMarginPercent,float videoScale |     public boolean playUnFullScreenAD(Activity activity, float topMarginPercent, float leftMarginPercent, float videoScale)  |
 | 设置视频广告是否跟随应用方向 | 无 |     public void setEnableFollowAppOrientation(boolean isEnable) |
