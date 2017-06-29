@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
 
 import com.centrixlink.SDK.AD_PlayError;
 import com.centrixlink.SDK.Centrixlink;
@@ -45,7 +46,8 @@ public class SplashActivity extends Activity {
         setContentView(new View(this));
         centrixlink.startWithAppID(this, appID, appKey);
 
-        centrixlink.playSplashAD(this, new SplashADEventListener() {
+        ViewGroup viewGroup = (ViewGroup)getWindow().getDecorView();
+        centrixlink.playSplashAD(this,viewGroup ,new SplashADEventListener() {
 
             @Override
             public void centrixlinkSplashADDidShow(Map map) {
