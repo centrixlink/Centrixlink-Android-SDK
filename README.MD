@@ -63,45 +63,7 @@
 
 
 ### 3 集成说明
-#### 集成版本变更指导
 
-##### 1. 监听器变更
-
-###### 视频广告监听器变更
-| | Old Lisenter: EventListener| New Lisenter: CentrixlinkVideoADListener|
-| ---|--- | --- |
-| 本地是否有预加载的广告 | public void onAdPlayableChanged(boolean isAdPlayable) | public void centrixLinkHasPreloadAD(boolean isPreloadFinished) |
-| 视频广告即将显示 |（无）| public void centrixLinkVideoADWillShow(Map map) |
-| 视频广告成功显示 | public void onAdStart(String adid) | public void centrixLinkVideoADDidShow(Map map) |
-| 视频广告显示失败 | public void onAdUnavailable(String reason) | public void centrixLinkVideoADShowFail(Map map) |
-| 视频广告关闭 | public void onAdEnd(String adid, boolean wasSuccessfulView, boolean wasCallToActionClicked) | public void centrixLinkVideoADClose(Map map) |
-| 视频广告触发了点击 | (无) | public void centrixLinkVideoADAction(Map map) |
-
-
-
-
-###### 开屏广告监听器变更
-
-
-| | Old Lisenter: SplashADEventListener| New Lisenter: SplashADEventListener|
-| ---|--- | --- |
-| 开屏图片广告成功显示	 | public void onShowSplashPresentView() | public void centrixlinkSplashADDidShow(Map map) |
-| 开屏图片广告关闭 | public void onSplashADClosed() | public void centrixlinkSplashADClosed(Map map) |
-| 开屏图片广告点击跳过按钮 | (无) | public void centrixlinkSplashADSkip(Map map) |
-| 开屏图片广告触发了Action事件 | public void onSplashADClicked() | public void centrixlinkSplashADAction(Map map) |
-| 开屏图片广告显示失败 | public void onShowSplashError(String string) | public void centrixlinkSplashADShowFail(AD_PlayError error) |
-| 开屏图片广告播放完成 | (无) | public void centrixlinkSplashADFinished(Map map) |
-
-##### 2.接口变更
-
-|   | Before 2.3 | 2.3 |
-| --- | --- | --- |
-| 显示开屏广告 | startSplashAD(Activity activity,SplashADEventListener splashADEventListener) | public void playSplashAD(final Activity activity, SplashADEventListener listener) <br><br>自定义ViewGroup开屏广告调用 <br>public void playSplashAD(final Activity activity, ViewGroup viewGroup, SplashADEventListener listener)<br>|
-| 显示视频广告 | public boolean fetchAD(Activity activity) | public boolean playAD(Activity activity, boolean isOnline) |
-| 显示非全屏视频广告 | public boolean fetchInterstitialAD(Activity activity,float topMarginPercent,float leftMarginPercent,float videoScale |     public boolean playUnFullScreenAD(Activity activity, float topMarginPercent, float leftMarginPercent, float videoScale)  |
-| 设置视频广告是否跟随应用方向 | 无 |     public void setEnableFollowAppOrientation(boolean isEnable) |
-| 设置Debug显示开关 | 无 | public void setDebugEnable(boolean isEnable) |
-| 清除缓存 | public void resetPreloadCache() | 清除缓存逻辑由SDK自动完成，无需开发者处理 |
 
 #### 3.1 SDK初始化
 ``` Java
@@ -161,18 +123,18 @@ CentrixlinkVideoADListener eventListener =  new CentrixlinkVideoADListener() {
                 //key:"error", value:AD_PlayError
                /* AD_PlayError
               100 	广告的播放间隔时间不满足条件
-              101	   本地没有可播放广告
-              102	   服务端接口返回错误
-              103	   服务端返回数据类型错误
-              104	   服务端接口响应超时
-              105	   当前正在播放其它广告
-    */
+              101	本地没有可播放广告
+              105	当前正在播放其它广告
+              106   处于静默状态
+              107   本地广告资源不可用
+              108   当前用户播放超限
+             */
             }
 
             @Override
             public void centrixLinkVideoADAction(Map map) {
                 //视频广告触发了点击事件
-                //key:"ADID", String表示触发
+                //key:"ADID", value:String
             }
 
             @Override
@@ -180,8 +142,7 @@ CentrixlinkVideoADListener eventListener =  new CentrixlinkVideoADListener() {
                 //视频广告关闭
                 //key:"ADID", value:String
                 //key:"playFinished", value:boolean;true表示播放完成
-                //key:"isAction", value:boolean;true表示触发
-                //key:"state", value:2(int)，表示广告关闭
+                //key:"isClick", value:boolean;true表示触发
 
             }
 
@@ -229,7 +190,7 @@ final Centrixlink centrixlink =   Centrixlink.sharedInstance();
  * 检查当前是否可以播放视频广告
  * 功能等同于预加载状态centrixLinkHasPreloadAD回调方法
 */
-centrixlink.isAdPlayable();
+centrixlink.hasPreload();
 ```
 
 
@@ -271,27 +232,20 @@ centrixlink.playSplashAD(this, new SplashADEventListener() {
             public void centrixlinkSplashADShowFail(AD_PlayError error) {
             //开屏图片广告显示失败
             /* AD_PlayError
-            200    请求超时
             201    本地无缓存
-            202    接口请求错误返回
-            203    要播放的开屏广告和本地预加载的不一致
-            204    当前开屏广告功能被服务器关闭
-            205    其他异常
-
             }
 
             @Override
             public void centrixlinkSplashADClosed(Map map) {
             //开屏图片广告关闭
             //key:"ADID", value:String
-            //key:"isClicked", value: boolean
+            //key:"isClick", value: boolean
+            //key:"isSkip", value: boolean
+            //key:"playFinished", value: boolean
+
+
             }
 
-            @Override
-            public void centrixlinkSplashADFinished(Map map) {
-            //开屏图片广告播放完成
-            //key:"ADID", value:String
-            }
 
             @Override
             public void centrixlinkSplashADSkip(Map map) {

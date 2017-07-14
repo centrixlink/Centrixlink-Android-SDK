@@ -18,11 +18,6 @@ import java.util.Map;
 
 public class MainActivity extends Activity {
 
-    /*
-    *
-    * 微信分享
-    * */
-//    private IWXAPI api;
     private CentrixlinkVideoADListener eventListener;
 
     private void outMessage(final TextView textView, String message, int level)
@@ -62,8 +57,6 @@ public class MainActivity extends Activity {
 
         String   appID = "APPID";
         String   appKey = "APPKEY";
-
-
 
 
         final Activity mActivity = this;
@@ -118,14 +111,19 @@ public class MainActivity extends Activity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                centrixlink.playAD(mActivity);
+                if(centrixlink.hasPreloadAD()){
+                    centrixlink.playAD(mActivity);
+
+                }
             }
         });
 
         button1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                centrixlink.playUnFullScreenAD(mActivity,0.2f,0.2f,0.8f);
+                if(centrixlink.hasPreloadAD()){
+                    centrixlink.playUnFullScreenAD(mActivity,0.2f,0.2f,0.8f);
+                }
             }
         });
 
@@ -133,14 +131,14 @@ public class MainActivity extends Activity {
             @Override
             public void centrixLinkVideoADWillShow(Map map) {
                 final TextView logView = (TextView) findViewById(R.id.logTextView);
-                outMessage(logView, "centrixLinkVideoADWillShow: "+ map.get("ADID"), Log.INFO);
+                outMessage(logView, "centrixLinkVideoADWillShow: " + map.toString(), Log.INFO);
             }
 
             @Override
             public void centrixLinkVideoADDidShow(Map map) {
                 final TextView logView = (TextView) findViewById(R.id.logTextView);
 
-                outMessage(logView, "centrixLinkVideoADDidShow: " + map.get("ADID"), Log.INFO);
+                outMessage(logView, "centrixLinkVideoADDidShow: " + map.toString(), Log.INFO);
             }
 
             @Override
@@ -166,34 +164,20 @@ public class MainActivity extends Activity {
             public void centrixLinkVideoADShowFail(Map map) {
                 final TextView logView = (TextView) findViewById(R.id.logTextView);
 
-                outMessage(logView, "centrixLinkVideoADShowFail: " + map.get("error"), Log.INFO);
+                outMessage(logView, "centrixLinkVideoADShowFail: " + map.toString(), Log.INFO);
             }
 
             @Override
             public void centrixLinkVideoADAction(Map map) {
                 final TextView logView = (TextView) findViewById(R.id.logTextView);
-                outMessage(logView, "centrixLinkVideoADAction: " + map.get("ADID"), Log.INFO);
+                outMessage(logView, "centrixLinkVideoADAction: " + map.toString(), Log.INFO);
             }
 
             @Override
             public void centrixLinkVideoADClose(Map map) {
                 final TextView logView = (TextView) findViewById(R.id.logTextView);
 
-
-                if ((boolean) (map.get("isAction"))) {
-                    outMessage(logView, "was action URL: " + map.get("ADID"), Log.INFO);
-                } else {
-                    outMessage(logView, "no action : " + map.get("ADID"), Log.INFO);
-                }
-
-                if ((boolean) (map.get("playFinished"))) {
-                    outMessage(logView, "wasSuccessfullView: " + map.get("ADID"), Log.INFO);
-
-                } else {
-                    outMessage(logView, "no wasSuccessfullView: " + map.get("ADID"), Log.INFO);
-
-                }
-                outMessage(logView, "centrixLinkVideoADClose: " + map.get("ADID"), Log.INFO);
+                outMessage(logView, "centrixLinkVideoADClose: " + map.toString(), Log.INFO);
             }
 
         };

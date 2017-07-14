@@ -75,12 +75,6 @@ public class SplashActivity extends Activity {
             }
 
             @Override
-            public void centrixlinkSplashADFinished(Map map) {
-                Log.i("demo", "centrixlinkSplashADFinished: "+map.toString() );
-
-            }
-
-            @Override
             public void centrixlinkSplashADSkip(Map map) {
                 Log.i("demo", "centrixlinkSplashADSkip: "+map.toString() );
             }
