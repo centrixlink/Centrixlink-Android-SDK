@@ -40,8 +40,8 @@ public class SplashActivity extends Activity {
         Centrixlink centrixlink = Centrixlink.sharedInstance();
 
 
-        String   appID = "APPID";
-        String   appKey = "APPKEY";
+        String   appID = "FQ11tkfWJ4";
+        String   appKey = "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQC6WzCw9MWQjwUH76KR+cjr/CdCyQ1UqQRqsMFSRmhM2XHPpXUp4v+vAL984P8xhZ/QLOMIULcLfuegqrzEm0lobJy/dLMy+e18ucR/z1lr6gXnItTwqliJfmNFQOOpYGs8OprucdYqtBl7M4keVDBPYOpVkBTSGr6HxKquZyA9tQIDAQAB";
 
         setContentView(new View(this));
         centrixlink.startWithAppID(this, appID, appKey);
