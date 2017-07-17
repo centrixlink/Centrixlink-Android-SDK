@@ -75,9 +75,9 @@ protected void onCreate(Bundle savedInstanceState) {
     setContentView(R.layout.activity_main);
 
     ....
-
-    final String appID = "您申请的APPID";
-    final String appKey = "申请APPID关联的APPKEY";
+    //实际开发中请务必使用自己申请的AppID 和 AppKey 
+    final String appID = "FQ11tkfWJ4";
+    final String appKey = "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQC6WzCw9MWQjwUH76KR+cjr/CdCyQ1UqQRqsMFSRmhM2XHPpXUp4v+vAL984P8xhZ/QLOMIULcLfuegqrzEm0lobJy/dLMy+e18ucR/z1lr6gXnItTwqliJfmNFQOOpYGs8OprucdYqtBl7M4keVDBPYOpVkBTSGr6HxKquZyA9tQIDAQAB";
 
     //init SDK
     final Centrixlink centrixlink =   Centrixlink.sharedInstance();
@@ -119,16 +119,16 @@ CentrixlinkVideoADListener eventListener =  new CentrixlinkVideoADListener() {
 
             @Override
             public void centrixLinkVideoADShowFail(Map map){
-                //视频广告播放失败
-                //key:"error", value:AD_PlayError
-               /* AD_PlayError
-              100 	广告的播放间隔时间不满足条件
-              101	本地没有可播放广告
-              105	当前正在播放其它广告
-              106   处于静默状态
-              107   本地广告资源不可用
-              108   当前用户播放超限
-             */
+            //视频广告播放失败
+            //key:"error", value:AD_PlayError
+            /* AD_PlayError
+                100 	广告的播放间隔时间不满足条件
+                101	本地没有可播放广告
+                105	当前正在播放其它广告
+                106   处于静默状态
+                107   本地广告资源不可用
+                108   当前用户播放超限
+            */
             }
 
             @Override
@@ -311,3 +311,5 @@ protected void onDestroy() {
 }
 
 ```
+
+
