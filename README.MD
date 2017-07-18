@@ -1,5 +1,43 @@
 # Centrixlink Android SDK集成文档
 
+##### 1. 监听器变更
+
+###### 视频广告监听器变更
+| | Old Lisenter: EventListener| New Lisenter: CentrixlinkVideoADListener|
+| ---|--- | --- |
+| 本地是否有预加载的广告 | public void onAdPlayableChanged(boolean isAdPlayable) | public void centrixLinkHasPreloadAD(boolean isPreloadFinished) |
+| 视频广告即将显示 |（无）| public void centrixLinkVideoADWillShow(Map map) |
+| 视频广告成功显示 | public void onAdStart(String adid) | public void centrixLinkVideoADDidShow(Map map) |
+| 视频广告显示失败 | public void onAdUnavailable(String reason) | public void centrixLinkVideoADShowFail(Map map) |
+| 视频广告关闭 | public void onAdEnd(String adid, boolean wasSuccessfulView, boolean wasCallToActionClicked) | public void centrixLinkVideoADClose(Map map) |
+| 视频广告触发了点击 | (无) | public void centrixLinkVideoADAction(Map map) |
+
+
+
+
+###### 开屏广告监听器变更
+
+
+| | Old Lisenter: SplashADEventListener| New Lisenter: SplashADEventListener|
+| ---|--- | --- |
+| 开屏图片广告成功显示	 | public void onShowSplashPresentView() | public void centrixlinkSplashADDidShow(Map map) |
+| 开屏图片广告关闭 | public void onSplashADClosed() | public void centrixlinkSplashADClosed(Map map) |
+| 开屏图片广告点击跳过按钮 | (无) | public void centrixlinkSplashADSkip(Map map) |
+| 开屏图片广告触发了Action事件 | public void onSplashADClicked() | public void centrixlinkSplashADAction(Map map) |
+| 开屏图片广告显示失败 | public void onShowSplashError(String string) | public void centrixlinkSplashADShowFail(AD_PlayError error) |
+| 开屏图片广告播放完成 | (无) | public void centrixlinkSplashADFinished(Map map) |
+
+##### 2.接口变更
+
+|   | Before V2.3 | >= V2.3 |
+| --- | --- | --- |
+| 显示开屏广告 | startSplashAD(Activity activity,SplashADEventListener splashADEventListener) | public void playSplashAD(final Activity activity, SplashADEventListener listener) <br></br><br>public void playSplashAD(final Activity activity, ViewGroup viewGroup, SplashADEventListener listener)</br>|
+| 显示视频广告 | public boolean fetchAD(Activity activity) | public boolean playAD(Activity activity, boolean isOnline) |
+| 显示非全屏视频广告 | public boolean fetchInterstitialAD(Activity activity,float topMarginPercent,float leftMarginPercent,float videoScale |     public boolean playUnFullScreenAD(Activity activity, float topMarginPercent, float leftMarginPercent, float videoScale)  |
+| 设置视频广告是否跟随应用方向 | 无 |     public void setEnableFollowAppOrientation(boolean isEnable) |
+| 设置Debug显示开关 | 无 | public void setDebugEnable(boolean isEnable) |
+|检查是否有可播放广告|public boolean isAdPlayable()|public boolean hasPreloadAD())|
+
 ### 版本支持及依赖
 
 * Centrixlink 支持 Android 4.0以上系统版本（API LEVEL 14+）
