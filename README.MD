@@ -33,10 +33,9 @@
 | --- | --- | --- |
 | 显示开屏广告 | startSplashAD(Activity activity,SplashADEventListener splashADEventListener) | public void playSplashAD(final Activity activity, SplashADEventListener listener) <br></br><br>public void playSplashAD(final Activity activity, ViewGroup viewGroup, SplashADEventListener listener)</br>|
 | 显示视频广告 | public boolean fetchAD(Activity activity) | public boolean playAD(Activity activity, boolean isOnline) |
-| 显示非全屏视频广告 | public boolean fetchInterstitialAD(Activity activity,float topMarginPercent,float leftMarginPercent,float videoScale |     public boolean playUnFullScreenAD(Activity activity, float topMarginPercent, float leftMarginPercent, float videoScale)  |
 | 设置视频广告是否跟随应用方向 | 无 |     public void setEnableFollowAppOrientation(boolean isEnable) |
 | 设置Debug显示开关 | 无 | public void setDebugEnable(boolean isEnable) |
-|检查是否有可播放广告|public boolean isAdPlayable()|public boolean hasPreloadAD())|
+| 检查是否有可播放广告|public boolean isAdPlayable()|public boolean hasPreloadAD())|
 
 ### 版本支持及依赖
 
@@ -201,26 +200,8 @@ final Centrixlink centrixlink =   Centrixlink.sharedInstance();
 centrixlink.playAD(activity);
 
 ```
-##### 3.2.3 非全屏播放视频广告
 
-``` Java
-
-final Centrixlink centrixlink =   Centrixlink.sharedInstance();
-
-/**
- 播放非全屏视频广告的布局
- (注意：所有参数均为百分比，取值范围:[0 1]，非全屏布局依照com.android.support:percent实现)
- @param Activity activity 当前activity
- @param float topMarginPercent 上边距
- @param float leftMarginPercent 左边距
- @param float videoScale 短边占比(例如：在竖屏模式下，指的是视频广告播放窗口宽度占整个屏幕宽的比例，反之横屏模式下是指视频广告播放窗口高度占整个屏幕高的比例)
- */
-
-centrixlink.playUnFullScreenAD(activity, topMarginPercent, leftMarginPercent, videoScale);
-
-
-```
-##### 3.2.4 检查当前是否可以播放视频广告
+##### 3.2.3 检查当前是否可以播放视频广告
 
 ```Java
 final Centrixlink centrixlink =   Centrixlink.sharedInstance();
@@ -232,7 +213,7 @@ centrixlink.hasPreload();
 ```
 
 
-##### 3.2.5 设置视频广告显示方向是否跟随应用方向
+##### 3.2.4 设置视频广告显示方向是否跟随应用方向
 
 ```Java
 /**
