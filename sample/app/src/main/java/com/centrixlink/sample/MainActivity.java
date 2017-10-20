@@ -114,6 +114,19 @@ public class MainActivity extends Activity {
                 if(centrixlink.hasPreloadAD()){
                     centrixlink.playAD(mActivity);
 
+
+                    /**如果你需要配置Server to Server 的透传参数，可以使用AdConfig 进行透传配置**/
+//                    AdConfig config = new AdConfig();
+//                    config.setOptionKeyExtra1("****");//你可以使用保留的八个自定义参数 optionKeyExtra1-optionKeyExtra8来配置你的自定义参数
+//                    Bundle bundle = new Bundle();//或者你可以使用bundle 通过 key value的形式传入你的自定义参数,我们支持所有类型参数和list类型的参数
+//                    bundle.putString("Your parameter name","Your parameter value");
+//                    bundle.putInt("Your parameter name1",1);
+//                    ArrayList<String> list = new ArrayList<>();
+//                    list.add("1");
+//                    bundle.putStringArrayList("Your parameter name2",list);
+//                    config.setBundle(bundle);
+//                    centrixlink.playAD(mActivity,config);
+
                 }
             }
         });
@@ -187,18 +200,7 @@ public class MainActivity extends Activity {
     }
 
 
-    @Override
-    protected void onPause() {
-        super.onPause();
-        Centrixlink.sharedInstance().onPause();
-    }
 
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        Centrixlink.sharedInstance().onResume();
-    }
 
     @Override
     protected void onDestroy() {

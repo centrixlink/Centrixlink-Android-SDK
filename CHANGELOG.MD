@@ -1,5 +1,10 @@
 ## CHANGELOG
 
+##### 2.4.2-20171020
+* 去除onResume(),onPause() 接口 ，减小对生命周期的依赖
+* 增加S2S方式reward callback功能支持
+* 支持AdMob adapter
+
 ##### 2.4.1-20170919
 * 修复空指针导致的异常问题
 
