@@ -222,7 +222,7 @@ final Centrixlink centrixlink =   Centrixlink.sharedInstance();
  * 检查当前是否可以播放视频广告
  * 功能等同于预加载状态centrixLinkHasPreloadAD回调方法
 */
-centrixlink.hasPreload();
+centrixlink.hasPreloadAD();
 ```
 
 
