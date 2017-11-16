@@ -32,12 +32,6 @@
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen"
             tools:ignore="InnerclassSeparator" />
 
-        <activity android:name="com.centrixlink.SDK.ResizedVideoADActivity"
-            android:configChanges="keyboard|keyboardHidden|orientation|screenSize|screenLayout|smallestScreenSize"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen"
-            android:hardwareAccelerated="true"
-            tools:ignore="InnerclassSeparator" />
-
     </application>
 
 </manifest>
