@@ -10,63 +10,6 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.centrixlink.sample.MainActivity">
 
-
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:inputType="textPersonName"
-        android:text="@string/app_id"
-        android:ems="10"
-        android:layout_below="@+id/autoRoration"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:id="@+id/appid"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
-
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:inputType="textPersonName"
-        android:text="@string/app_key"
-        android:ems="10"
-        android:layout_below="@+id/appid"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="12dp"
-        android:id="@+id/appkey"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
-
-
-
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@+id/appkey"
-        android:id="@+id/scrollView"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        >
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/logTextView" />
-    </ScrollView>
-
-    <Button
-        android:text="@string/interscreen"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/interscreen"
-        android:layout_alignParentTop="true"
-        android:layout_toRightOf="@+id/fullscreen"
-        android:layout_toEndOf="@+id/fullscreen" />
-
     <Button
         android:text="@string/fullscreen"
         android:layout_width="wrap_content"
@@ -74,16 +17,22 @@
         android:id="@+id/fullscreen"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignBottom="@+id/interscreen" />
+        android:layout_alignParentStart="true"/>
 
-    <CheckBox
-        android:text="@string/autoRoration"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/fullscreen"
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/fullscreen"
+        android:id="@+id/scrollView"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_marginBottom="23dp"
-        android:id="@+id/autoRoration" />
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/logTextView" />
+    </ScrollView>
 </RelativeLayout>

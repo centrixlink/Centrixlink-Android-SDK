@@ -5,11 +5,9 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.CheckBox;
-import android.widget.CompoundButton;
-import android.widget.EditText;
 import android.widget.TextView;
 
+import com.centrixlink.SDK.AdConfig;
 import com.centrixlink.SDK.Centrixlink;
 import com.centrixlink.SDK.CentrixlinkVideoADListener;
 import com.centrixlink.SDK.DebugLogCallBack;
@@ -19,6 +17,8 @@ import java.util.Map;
 public class MainActivity extends Activity {
 
     private CentrixlinkVideoADListener eventListener;
+
+    private AdConfig config;
 
     private void outMessage(final TextView textView, String message, int level)
     {
@@ -53,13 +53,12 @@ public class MainActivity extends Activity {
         setContentView(R.layout.activity_main);
 
         final Centrixlink centrixlink =   Centrixlink.sharedInstance();
+        String   appID = "FQ11tkfWJ4";
+        String   appKey = "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQC6WzCw9MWQjwUH76KR+cjr/CdCyQ1UqQRqsMFSRmhM2XHPpXUp4v+vAL984P8xhZ/QLOMIULcLfuegqrzEm0lobJy/dLMy+e18ucR/z1lr6gXnItTwqliJfmNFQOOpYGs8OprucdYqtBl7M4keVDBPYOpVkBTSGr6HxKquZyA9tQIDAQAB";
+
+        centrixlink.startWithAppID(this, appID, appKey);
 
 
-        String   appID = "APPID";
-        String   appKey = "APPKEY";
-
-
-        final Activity mActivity = this;
 
         //开启微信分享支持（可选，推荐添加）
         /*
@@ -72,15 +71,7 @@ public class MainActivity extends Activity {
         */
         final Button button =(Button) findViewById(R.id.fullscreen);
 
-        final Button button1 =(Button) findViewById(R.id.interscreen);
         button.setEnabled(false);
-        button1.setEnabled(false);
-
-        EditText appIDview = (EditText) findViewById(R.id.appid);
-        appIDview.setText(appID);
-
-        EditText appkeyview = (EditText) findViewById(R.id.appkey);
-        appkeyview.setText(appKey);
 
         centrixlink.setDebugCallBack(new DebugLogCallBack() {
             @Override
@@ -98,44 +89,44 @@ public class MainActivity extends Activity {
         });
 
 
-        CheckBox autoRotateADDirection = (CheckBox) findViewById(R.id.autoRoration);
 
-        autoRotateADDirection.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-
-                centrixlink.setEnableFollowAppOrientation(b);
-            }
-        });
 
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(centrixlink.hasPreloadAD()){
-                    centrixlink.playAD(mActivity);
+                if(centrixlink.isAdPlayable()){
 
+                    centrixlink.playAD(MainActivity.this);
 
-                    /**如果你需要配置Server to Server 的透传参数，可以使用AdConfig 进行透传配置**/
-//                    AdConfig config = new AdConfig();
-//                    config.setOptionKeyExtra1("****");//你可以使用保留的八个自定义参数 optionKeyExtra1-optionKeyExtra8来配置你的自定义参数
-//                    Bundle bundle = new Bundle();//或者你可以使用bundle 通过 key value的形式传入你的自定义参数,我们支持所有类型参数和list类型的参数
-//                    bundle.putString("Your parameter name","Your parameter value");
-//                    bundle.putInt("Your parameter name1",1);
-//                    ArrayList<String> list = new ArrayList<>();
-//                    list.add("1");
-//                    bundle.putStringArrayList("Your parameter name2",list);
+//                    /**如果你需要配置广告方向,声音开闭,点击下载后是否自动关闭广告界面可以使用AdConfig 进行配置
+//                     *  并且如果你需要进行Server to Server 的透传并配置透传参数，你可以使用AdConfig提供的默
+//                     *  认参数，或者使用Bundle来配置你的自定义参数**/
+//                    if(config == null){
+//                        config = centrixlink.getDefaultAdConfig();
+//                    }
+//
+//                    config.setCentrixlinkOrientations(AdConfig.ORIENTATIONS_DEFAULT);
+//                    config.setCentrixlinkIECAutoClose(false);
+////                    config.setSoundType(AdConfig.SOUNDTYPE_OPENED);
+//                    config.setPlaydOptionKeyExtraInfoDictionary("serfsffff");
+//                    Bundle bundle = new Bundle();
+//                    bundle.putString("test1"," i am developer");
+//                    bundle.putInt("testId",10086);
+//                    bundle.putChar("testChar", (char) 12);
+//                    bundle.putStringArray("StringArray",new String[]{"IA","BA","CA"});
+//                    bundle.putLongArray("LongArray",new long[]{100L,200L,300L});
+//                    ArrayList<String> stringList = new ArrayList<>();
+//                    stringList.add("aaaa");
+//                    stringList.add("bbbb");
+//                    stringList.add("cccc");
+//                    bundle.putStringArrayList("stringList",stringList);
+//                    ArrayList<Integer> integers = new ArrayList<>();
+//                    integers.add(1);
+//                    integers.add(2);
+//                    integers.add(3);
+//                    bundle.putIntegerArrayList("integers",integers);
 //                    config.setBundle(bundle);
-//                    centrixlink.playAD(mActivity,config);
-
-                }
-            }
-        });
-
-        button1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(centrixlink.hasPreloadAD()){
-                    centrixlink.playUnFullScreenAD(mActivity,0.2f,0.2f,0.8f);
+//                    centrixlink.playAD(MainActivity.this,config);
                 }
             }
         });
@@ -155,15 +146,13 @@ public class MainActivity extends Activity {
             }
 
             @Override
-            public void centrixLinkHasPreloadAD(boolean isPreloadFinished) {
+            public void centrixLinkAdPlayability(boolean isPreloadFinished) {
                 final TextView logView = (TextView) findViewById(R.id.logTextView);
 
                 final Button button = (Button) findViewById(R.id.fullscreen);
 
-                final Button button1 = (Button) findViewById(R.id.interscreen);
 
                 button.setEnabled(isPreloadFinished);
-                button1.setEnabled(isPreloadFinished);
 
                 if (isPreloadFinished) {
                     outMessage(logView, "centrixLinkHasPreloadAD: " + "AD resouce is ready", Log.INFO);
