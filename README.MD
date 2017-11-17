@@ -149,7 +149,8 @@ final Centrixlink centrixlink =   Centrixlink.sharedInstance();
 /**
  @param Activity activity 当前activity
  */
-
+ 
+/**你可以使用之前的接口进行播放:**/
 centrixlink.playAD(activity);
 
 
@@ -157,7 +158,6 @@ centrixlink.playAD(activity);
 *  并且如果你需要进行Server to Server 的透传并配置透传参数，你可以使用AdConfig提供的默
 *  认参数，或者使用Bundle来配置你的自定义参数**/
 AdConfig config = new AdConfig();
-//
 config.setCentrixlinkOrientations(AdConfig.ORIENTATIONS_DEFAULT);//设置你的广告的播放方向：AdConfig.ORIENTATIONS_LANDSCAPE 横向，AdConfig.ORIENTATIONS_PORTRAIT 竖向，AdConfig.ORIENTATIONS_DEFAULT会默认跟随你在后台设置的方向
 config.setCentrixlinkIECAutoClose(false);//设置广告跳转按钮被点击后是否会自动关闭广告界面
 config.setOptionKeyExtra1("****");//你可以使用保留的八个自定义参数 optionKeyExtra1-optionKeyExtra8来配置你的自定义参数
